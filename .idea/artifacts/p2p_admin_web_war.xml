@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="p2p-admin-web:war">
+    <output-path>$PROJECT_DIR$/p2p-admin-web/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>p2p-admin-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="p2p-admin.war">
+      <element id="artifact" artifact-name="p2p-admin-web:war exploded" />
+    </root>
+  </artifact>
+</component>

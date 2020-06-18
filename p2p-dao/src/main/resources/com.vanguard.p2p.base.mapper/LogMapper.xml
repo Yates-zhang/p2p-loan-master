@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vanguard.p2p.base.mapper.LogMapper" >
+  <resultMap id="BaseResultMap" type="com.vanguard.p2p.base.domain.Log" >
+    <id column="log_id" property="logId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="spend_time" property="spendTime" jdbcType="INTEGER" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="user_agent" property="userAgent" jdbcType="VARCHAR" />
+    <result column="user_ip" property="userIp" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.vanguard.p2p.base.domain.Log" extends="BaseResultMap" >
+    <result column="opt_content" property="optContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    log_id, user_id, create_time, spend_time, method, user_agent, user_ip, url
+  </sql>
+  <sql id="Blob_Column_List" >
+    opt_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.vanguard.p2p.base.example.LogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vanguard.p2p.base.example.LogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vanguard.p2p.base.example.LogExample" >
+    delete from sys_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vanguard.p2p.base.domain.Log" >
+    insert into sys_log (log_id, user_id, create_time, 
+      spend_time, method, user_agent, 
+      user_ip, url, opt_content
+      )
+    values (#{logId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{spendTime,jdbcType=INTEGER}, #{method,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, 
+      #{userIp,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{optContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vanguard.p2p.base.domain.Log" >
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        log_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="spendTime != null" >
+        spend_time,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="userAgent != null" >
+        user_agent,
+      </if>
+      <if test="userIp != null" >
+        user_ip,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="optContent != null" >
+        opt_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spendTime != null" >
+        #{spendTime,jdbcType=INTEGER},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null" >
+        #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null" >
+        #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="optContent != null" >
+        #{optContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vanguard.p2p.base.example.LogExample" resultType="java.lang.Integer" >
+    select count(*) from sys_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_log
+    <set >
+      <if test="record.logId != null" >
+        log_id = #{record.logId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.spendTime != null" >
+        spend_time = #{record.spendTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.method != null" >
+        method = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAgent != null" >
+        user_agent = #{record.userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userIp != null" >
+        user_ip = #{record.userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optContent != null" >
+        opt_content = #{record.optContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sys_log
+    set log_id = #{record.logId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      spend_time = #{record.spendTime,jdbcType=INTEGER},
+      method = #{record.method,jdbcType=VARCHAR},
+      user_agent = #{record.userAgent,jdbcType=VARCHAR},
+      user_ip = #{record.userIp,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      opt_content = #{record.optContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_log
+    set log_id = #{record.logId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      spend_time = #{record.spendTime,jdbcType=INTEGER},
+      method = #{record.method,jdbcType=VARCHAR},
+      user_agent = #{record.userAgent,jdbcType=VARCHAR},
+      user_ip = #{record.userIp,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vanguard.p2p.base.domain.Log" >
+    update sys_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spendTime != null" >
+        spend_time = #{spendTime,jdbcType=INTEGER},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null" >
+        user_agent = #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null" >
+        user_ip = #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="optContent != null" >
+        opt_content = #{optContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.vanguard.p2p.base.domain.Log" >
+    update sys_log
+    set user_id = #{userId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      spend_time = #{spendTime,jdbcType=INTEGER},
+      method = #{method,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      user_ip = #{userIp,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      opt_content = #{optContent,jdbcType=LONGVARCHAR}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vanguard.p2p.base.domain.Log" >
+    update sys_log
+    set user_id = #{userId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      spend_time = #{spendTime,jdbcType=INTEGER},
+      method = #{method,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      user_ip = #{userIp,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+</mapper>

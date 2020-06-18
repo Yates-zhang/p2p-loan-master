@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vanguard.p2p.base.mapper.AdvertMapper" >
+  <resultMap id="BaseResultMap" type="com.vanguard.p2p.base.domain.Advert" >
+    <id column="advert_id" property="advertId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="width" property="width" jdbcType="INTEGER" />
+    <result column="height" property="height" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="defult_number" property="defultNumber" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.vanguard.p2p.base.domain.Advert" extends="BaseResultMap" >
+    <result column="template" property="template" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    advert_id, name, width, height, description, code, defult_number, number, status, 
+    type, create_time, create_by, update_time, update_by
+  </sql>
+  <sql id="Blob_Column_List" >
+    template
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.vanguard.p2p.base.example.AdvertExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from advert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vanguard.p2p.base.example.AdvertExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from advert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from advert
+    where advert_id = #{advertId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from advert
+    where advert_id = #{advertId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vanguard.p2p.base.example.AdvertExample" >
+    delete from advert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vanguard.p2p.base.domain.Advert" >
+    insert into advert (advert_id, name, width, 
+      height, description, code, 
+      defult_number, number, status, 
+      type, create_time, create_by, 
+      update_time, update_by, template
+      )
+    values (#{advertId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, 
+      #{height,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{defultNumber,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{type,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{template,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.vanguard.p2p.base.domain.Advert" >
+    insert into advert
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="advertId != null" >
+        advert_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="width != null" >
+        width,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="defultNumber != null" >
+        defult_number,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="template != null" >
+        template,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="advertId != null" >
+        #{advertId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="defultNumber != null" >
+        #{defultNumber,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="template != null" >
+        #{template,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vanguard.p2p.base.example.AdvertExample" resultType="java.lang.Integer" >
+    select count(*) from advert
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update advert
+    <set >
+      <if test="record.advertId != null" >
+        advert_id = #{record.advertId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.width != null" >
+        width = #{record.width,jdbcType=INTEGER},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defultNumber != null" >
+        defult_number = #{record.defultNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.template != null" >
+        template = #{record.template,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update advert
+    set advert_id = #{record.advertId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      width = #{record.width,jdbcType=INTEGER},
+      height = #{record.height,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      defult_number = #{record.defultNumber,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      type = #{record.type,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      template = #{record.template,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update advert
+    set advert_id = #{record.advertId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      width = #{record.width,jdbcType=INTEGER},
+      height = #{record.height,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      defult_number = #{record.defultNumber,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      type = #{record.type,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vanguard.p2p.base.domain.Advert" >
+    update advert
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null" >
+        width = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="defultNumber != null" >
+        defult_number = #{defultNumber,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="template != null" >
+        template = #{template,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where advert_id = #{advertId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.vanguard.p2p.base.domain.Advert" >
+    update advert
+    set name = #{name,jdbcType=VARCHAR},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      defult_number = #{defultNumber,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      template = #{template,jdbcType=LONGVARCHAR}
+    where advert_id = #{advertId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vanguard.p2p.base.domain.Advert" >
+    update advert
+    set name = #{name,jdbcType=VARCHAR},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      defult_number = #{defultNumber,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR}
+    where advert_id = #{advertId,jdbcType=BIGINT}
+  </update>
+</mapper>

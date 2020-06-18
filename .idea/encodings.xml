@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/p2p-admin-web/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-dao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-dao/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p-web/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

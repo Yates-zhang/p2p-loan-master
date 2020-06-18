@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="p2p-adminweb:war">
+    <output-path>$PROJECT_DIR$/p2p-adminweb/target</output-path>
+    <root id="archive" name="p2p-admin.war">
+      <element id="artifact" artifact-name="p2p-adminweb:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vanguard.p2p.base.mapper.SystemDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="com.vanguard.p2p.base.domain.SystemDictionary" >
+    <id column="sys_dict_id" property="sysDictId" jdbcType="BIGINT" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sys_dict_id, sn, title, intro
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.vanguard.p2p.base.example.SystemDictionaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dictionary
+    where sys_dict_id = #{sysDictId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_dictionary
+    where sys_dict_id = #{sysDictId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.vanguard.p2p.base.example.SystemDictionaryExample" >
+    delete from sys_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.vanguard.p2p.base.domain.SystemDictionary" >
+    insert into sys_dictionary (sys_dict_id, sn, title, 
+      intro)
+    values (#{sysDictId,jdbcType=BIGINT}, #{sn,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{intro,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vanguard.p2p.base.domain.SystemDictionary" >
+    insert into sys_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sysDictId != null" >
+        sys_dict_id,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sysDictId != null" >
+        #{sysDictId,jdbcType=BIGINT},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.vanguard.p2p.base.example.SystemDictionaryExample" resultType="java.lang.Integer" >
+    select count(*) from sys_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_dictionary
+    <set >
+      <if test="record.sysDictId != null" >
+        sys_dict_id = #{record.sysDictId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sn != null" >
+        sn = #{record.sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intro != null" >
+        intro = #{record.intro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_dictionary
+    set sys_dict_id = #{record.sysDictId,jdbcType=BIGINT},
+      sn = #{record.sn,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      intro = #{record.intro,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vanguard.p2p.base.domain.SystemDictionary" >
+    update sys_dictionary
+    <set >
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sys_dict_id = #{sysDictId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vanguard.p2p.base.domain.SystemDictionary" >
+    update sys_dictionary
+    set sn = #{sn,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR}
+    where sys_dict_id = #{sysDictId,jdbcType=BIGINT}
+  </update>
+</mapper>

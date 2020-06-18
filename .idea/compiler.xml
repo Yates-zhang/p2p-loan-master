@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="p2p-web" />
+        <module name="p2p-service" />
+        <module name="p2p-dao" />
+        <module name="p2p-admin" />
+        <module name="p2p-common" />
+        <module name="p2p-server" />
+        <module name="p2p-admin-web" />
+        <module name="p2p-util" />
+        <module name="p2p-adminweb" />
+        <module name="p2p-domain" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="p2p-admin-web" target="1.7" />
+      <module name="p2p-adminweb" target="8" />
+      <module name="p2p-dao" target="1.7" />
+      <module name="p2p-domain" target="1.7" />
+      <module name="p2p-loan" target="1.7" />
+      <module name="p2p-service" target="1.7" />
+      <module name="p2p-util" target="1.7" />
+      <module name="p2p-web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

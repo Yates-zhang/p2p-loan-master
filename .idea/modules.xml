@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/p2p-admin-web/p2p-admin-web.iml" filepath="$PROJECT_DIR$/p2p-admin-web/p2p-admin-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2p-adminweb/p2p-adminweb.iml" filepath="$PROJECT_DIR$/p2p-adminweb/p2p-adminweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2p-dao/p2p-dao.iml" filepath="$PROJECT_DIR$/p2p-dao/p2p-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2p-domain/p2p-domain.iml" filepath="$PROJECT_DIR$/p2p-domain/p2p-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/p2p-loan.iml" filepath="$PROJECT_DIR$/.idea/p2p-loan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2p-parent/p2p-parent.iml" filepath="$PROJECT_DIR$/p2p-parent/p2p-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2p-service/p2p-service.iml" filepath="$PROJECT_DIR$/p2p-service/p2p-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2p-util/p2p-util.iml" filepath="$PROJECT_DIR$/p2p-util/p2p-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2p-web/p2p-web.iml" filepath="$PROJECT_DIR$/p2p-web/p2p-web.iml" />
+    </modules>
+  </component>
+</project>
