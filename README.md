@@ -1,6 +1,6 @@
 # P2P网贷系统
 
-基于Spring、Spring MVC、Mybatis框架开发，用MAVEN做项目管理，安全框架为shiro。
+基于Spring、Spring MVC、Mybatis框架开发，用MAVEN做项目管理.
 
 ##  系统主要功能：
 ### 前台模块：
