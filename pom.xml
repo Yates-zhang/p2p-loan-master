@@ -40,7 +40,7 @@
         <commons-io.version>1.3.2</commons-io.version>
         <commons-net.version>3.3</commons-net.version>
         <commons-codec.version>1.10</commons-codec.version>
-        <bcprov-jdk15on.version>1.56</bcprov-jdk15on.version>
+        <bcprov-jdk15on.version>1.67</bcprov-jdk15on.version>
         <lombok.version>1.16.6</lombok.version>
         <slf4j-api.version>1.7.6</slf4j-api.version>
         <slf4j-log4j12>1.7.6</slf4j-log4j12>
